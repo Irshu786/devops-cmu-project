@@ -1,1 +1,6 @@
-istio steps
+istio installation steps
+1. curl -L https://istio.io/downloadIstio | sh -
+2. cd istio-1.19.3
+3. export PATH=$PWD/bin:$PATH
+4. istioctl install --set profile=demo -y
+5. kubectl label namespace default istio-injection=enabled
