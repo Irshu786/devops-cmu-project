@@ -9,14 +9,36 @@ required_version = ">= 1.2.0"
 }
 
 provider "aws" {
-region = "ap-south-1"
+region = "ap-southeast-2"
 }
 
-resource "aws_instance" "webserver" {
+resource "aws_instance" "controller" {
 ami = "ami-0f5ee92e2d63afc18"
-instance_type = "t2.micro"
+instance_type = "t3a.xlarge"
 tags = {
-Name = "controller"
+Name = "my-master-node"
+}
+
+key_name=aws_key_pair.web.id
+vpc_security_group_ids=[ aws_security_group.ssh-access.id ]
+}
+
+resource "aws_instance" "worker1" {
+ami = "ami-0f5ee92e2d63afc18"
+instance_type = "t3a.xlarge"
+tags = {
+Name = "worker-1"
+}
+
+key_name=aws_key_pair.web.id
+vpc_security_group_ids=[ aws_security_group.ssh-access.id ]
+}
+
+resource "aws_instance" "worker2" {
+ami = "ami-0f5ee92e2d63afc18"
+instance_type = "t3a.xlarge"
+tags = {
+Name = "worker-2"
 }
 
 key_name=aws_key_pair.web.id
@@ -39,5 +61,5 @@ cidr_blocks=["0.0.0.0/0"]
 }
 
 output publicip {
-value = aws_instance.webserver.public_ip
+value = aws_instance.controller.public_ip
 }
