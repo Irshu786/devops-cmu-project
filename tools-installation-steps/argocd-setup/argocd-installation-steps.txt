@@ -1,1 +1,7 @@
 argocd steps.
+
+Prerequisites:
+Make sure to have a running kubernetes cluster
+Steps:
+$ kubectl create namespace argocd
+$ kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml
