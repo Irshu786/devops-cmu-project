@@ -1,1 +1,23 @@
 terrafom installation steps.
+
+1. update apt repository
+  sudo apt update
+
+2. Install terraform from apt repository.
+  sudo apt install terraform
+
+2. configure aws cli
+  sudo apt-get install awscli
+
+4. configure aws-cli
+  aws configure
+
+The user will be prompted to enter the following,
+  aws configure
+  AWS Access Key ID [None]: 
+  AWS Secret Access Key [None]: 
+  Default region name [None]: 
+  Default output format [None]:
+
+After that you are set to use terraform from your loacl CLI.
+  
